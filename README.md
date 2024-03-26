@@ -7,26 +7,31 @@
 <p align="left">
 This is a collection of condenst go snippets that we use. There is no guarantee that they work for you. Bound to change at any time.
 
-**templates** - Apache License v2
-Copied from `kubectl`.
+#### templates 
+> Apache License v2 - `kubectl`
+
 Condensed it down (_term.go_) to what is needed as this added ~20MB to the binary.
 Now it takes ~2MB.
 
-**cmdutil** - Apache License v2
-Copied from `kubectl` - _pkg/cmd/util_
+#### cmdutil
+> Apache License v2 - `kubectl` - _pkg/cmd/util_
+
 This added ~55MB.
 Condensed it down to what is needed.
 
-**util** - MIT
-Copied from `hcloud cli`.
+#### util
+> MIT - `hcloud cli`
+
 Is behind `internel` folder.
 
-**cmpl** - MIT
-Copied from `hcloud cli`.
+#### cmpl 
+> MIT - `hcloud cli`
+
 Is behind `internel` folder.
 
-**output** - MIT
-Copied from `hcloud cli`.
+### output
+> MIT - `hcloud cli`
+
 Is behind `internel` folder.
 </p>
 
@@ -45,7 +50,6 @@ All other code is licensed under the MIT License.
 
 Thanks to the following tools and projects developing this project is possible:
 
-- [Catppuccin](https://github.com/catppuccin/catppuccin): Base for the readme.md and general nice color palettes.
 - [kubectl](https://github.com/kubernetes/kubectl): For the templates and cmdutil.
 - [hcloud cli](https://github.com/hetznercloud/cli): For the util, cmpl and output packages.
 
