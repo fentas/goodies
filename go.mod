@@ -11,15 +11,13 @@ require (
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.9.0
-	k8s.io/apimachinery v0.29.3
-	k8s.io/klog/v2 v2.120.1
 	k8s.io/utils v0.0.0-20240310230437-4693a0247e57
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/color v1.10.0 // indirect
-	github.com/go-logr/logr v1.4.1 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.8 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect

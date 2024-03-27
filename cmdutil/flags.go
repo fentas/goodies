@@ -17,16 +17,16 @@ limitations under the License.
 package cmdutil
 
 import (
+	"log"
 	"time"
 
 	"github.com/spf13/cobra"
-	"k8s.io/klog/v2"
 )
 
 func GetFlagString(cmd *cobra.Command, flag string) string {
 	s, err := cmd.Flags().GetString(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return s
 }
@@ -35,7 +35,7 @@ func GetFlagString(cmd *cobra.Command, flag string) string {
 func GetFlagStringSlice(cmd *cobra.Command, flag string) []string {
 	s, err := cmd.Flags().GetStringSlice(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return s
 }
@@ -44,7 +44,7 @@ func GetFlagStringSlice(cmd *cobra.Command, flag string) []string {
 func GetFlagStringArray(cmd *cobra.Command, flag string) []string {
 	s, err := cmd.Flags().GetStringArray(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return s
 }
@@ -52,7 +52,7 @@ func GetFlagStringArray(cmd *cobra.Command, flag string) []string {
 func GetFlagBool(cmd *cobra.Command, flag string) bool {
 	b, err := cmd.Flags().GetBool(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return b
 }
@@ -61,7 +61,7 @@ func GetFlagBool(cmd *cobra.Command, flag string) bool {
 func GetFlagInt(cmd *cobra.Command, flag string) int {
 	i, err := cmd.Flags().GetInt(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return i
 }
@@ -70,7 +70,7 @@ func GetFlagInt(cmd *cobra.Command, flag string) int {
 func GetFlagInt32(cmd *cobra.Command, flag string) int32 {
 	i, err := cmd.Flags().GetInt32(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return i
 }
@@ -79,7 +79,7 @@ func GetFlagInt32(cmd *cobra.Command, flag string) int32 {
 func GetFlagInt64(cmd *cobra.Command, flag string) int64 {
 	i, err := cmd.Flags().GetInt64(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return i
 }
@@ -87,7 +87,7 @@ func GetFlagInt64(cmd *cobra.Command, flag string) int64 {
 func GetFlagDuration(cmd *cobra.Command, flag string) time.Duration {
 	d, err := cmd.Flags().GetDuration(flag)
 	if err != nil {
-		klog.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
+		log.Fatalf("error accessing flag %s for command %s: %v", flag, cmd.Name(), err)
 	}
 	return d
 }

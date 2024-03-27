@@ -19,20 +19,31 @@ package cmdutil
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 
-	utilerrors "k8s.io/apimachinery/pkg/util/errors"
-	"k8s.io/klog/v2"
 	utilexec "k8s.io/utils/exec"
 )
 
 const (
 	DefaultErrorExitCode = 1
 )
+
+// Aggregate represents an object that contains multiple errors, but does not
+// necessarily have singular semantic meaning.
+// The aggregate can be used with `errors.Is()` to check for the occurrence of
+// a specific error type.
+// Errors.As() is not supported, because the caller presumably cares about a
+// specific error of potentially multiple that match the given type.
+type Aggregate interface {
+	error
+	Errors() []error
+	Is(error) bool
+}
 
 type debugError interface {
 	DebugError() (msg string, args []interface{})
@@ -57,11 +68,6 @@ func DefaultBehaviorOnFatal() {
 // klog.Fatal is invoked for extended information. This is intended for maintainer
 // debugging and out of a reasonable range for users.
 func fatal(msg string, code int) {
-	// nolint:logcheck // Not using the result of klog.V(99) inside the if
-	// branch is okay, we just use it to determine how to terminate.
-	if klog.V(99).Enabled() {
-		klog.FatalDepth(2, msg)
-	}
 	if len(msg) > 0 {
 		// add newline if needed
 		if !strings.HasSuffix(msg, "\n") {
@@ -101,7 +107,7 @@ func CheckDiffErr(err error) {
 // func with that string and an kubectl exit code.
 func checkErr(err error, handleErr func(string, int)) {
 	// unwrap aggregates of 1
-	if agg, ok := err.(utilerrors.Aggregate); ok && len(agg.Errors()) == 1 {
+	if agg, ok := err.(Aggregate); ok && len(agg.Errors()) == 1 {
 		err = agg.Errors()[0]
 	}
 
@@ -156,7 +162,7 @@ func RequireNoArguments(c *cobra.Command, args []string) {
 // commands.
 func StandardErrorMessage(err error) (string, bool) {
 	if debugErr, ok := err.(debugError); ok {
-		klog.V(4).Infof(debugErr.DebugError())
+		log.Println(debugErr.DebugError())
 	}
 	return fmt.Sprint(err), false
 }
