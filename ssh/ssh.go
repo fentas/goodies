@@ -50,12 +50,7 @@ func NewClient(ctx context.Context, logger *slog.Logger, options *ClientOptions)
 	}
 }
 
-// Connect to the server, open a session and run a command.
-func (s *Client) Connect() (*ssh.Session, error) {
-	if s.Session != nil {
-		return s.Session, nil
-	}
-
+func (s *Client) RawClient() (*ssh.Client, error) {
 	authMethods := []ssh.AuthMethod{}
 	s.authPassword(&authMethods)
 	s.authInteractive(&authMethods)
@@ -91,7 +86,19 @@ func (s *Client) Connect() (*ssh.Session, error) {
 		s.logger.ErrorContext(s.ctx, "Failed to create client connection", "error", err)
 		return nil, err
 	}
-	client := ssh.NewClient(c, chans, reqs)
+	return ssh.NewClient(c, chans, reqs), nil
+}
+
+// Connect to the server, open a session and run a command.
+func (s *Client) Connect() (*ssh.Session, error) {
+	if s.Session != nil {
+		return s.Session, nil
+	}
+
+	client, err := s.RawClient()
+	if err != nil {
+		return nil, err
+	}
 
 	s.Session, err = client.NewSession()
 	if err != nil {
