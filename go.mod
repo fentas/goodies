@@ -1,4 +1,4 @@
-module github.com/buyoio/goodies
+module github.com/fentas/goodies
 
 go 1.22.0
 

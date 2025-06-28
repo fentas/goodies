@@ -3,7 +3,7 @@ package cmpl_test
 import (
 	"testing"
 
-	"github.com/buyoio/goodies/cmpl"
+	"github.com/fentas/goodies/cmpl"
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 )

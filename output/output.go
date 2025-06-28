@@ -19,8 +19,8 @@ import (
 	"github.com/fatih/structs"
 	"github.com/spf13/cobra"
 
-	"github.com/buyoio/goodies/cmpl"
-	"github.com/buyoio/goodies/util"
+	"github.com/fentas/goodies/cmpl"
+	"github.com/fentas/goodies/util"
 )
 
 const flagName = "output"

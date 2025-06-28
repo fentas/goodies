@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/buyoio/goodies/logs"
-	"github.com/buyoio/goodies/streams"
+	"github.com/fentas/goodies/logs"
+	"github.com/fentas/goodies/streams"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/agent"
 )

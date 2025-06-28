@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/buyoio/goodies/output"
-	"github.com/buyoio/goodies/util"
+	"github.com/fentas/goodies/output"
+	"github.com/fentas/goodies/util"
 )
 
 type IO struct {
